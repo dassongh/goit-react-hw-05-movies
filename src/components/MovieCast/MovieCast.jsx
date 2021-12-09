@@ -1,8 +1,33 @@
-export default function MovieCast() {
+import { fetchCredits } from '../../services/fetchMovies';
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import s from './MovieCast.module.css';
+
+export default function MovieCast({ movieId }) {
+  const [cast, setCast] = useState(null);
+
+  useEffect(() => {
+    fetchCredits(movieId).then(response => setCast([...response.cast]));
+  }, [movieId]);
+
   return (
-    <div>
-      <h1>Hello</h1>
-      <p>1234</p>
-    </div>
+    <ul>
+      {cast &&
+        cast.map(el => {
+          return (
+            <li key={el.id}>
+              <div className={s.thumb}>
+                <img src={`https://www.themoviedb.org/t/p/w1280${el.profile_path}`} alt="" />
+              </div>
+              <p>{el.original_name}</p>
+              <p>{el.character}</p>
+            </li>
+          );
+        })}
+    </ul>
   );
 }
+
+MovieCast.propTypes = {
+  movieId: PropTypes.string,
+};

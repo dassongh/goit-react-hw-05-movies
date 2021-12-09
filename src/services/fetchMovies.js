@@ -21,3 +21,9 @@ export async function fetchCredits(id) {
     `https://api.themoviedb.org/3/movie/${id}/credits?api_key=0fbf6f1a4cbaabd00dcc7bb0f87f0a26&language=en-US`,
   ).then(response => response.json());
 }
+
+export async function fetchReviews(id) {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=0fbf6f1a4cbaabd00dcc7bb0f87f0a26&language=en-US&page=1`,
+  ).then(response => response.json());
+}

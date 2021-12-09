@@ -1,3 +1,4 @@
+import Reviews from '../components/Reviews/Reviews';
 import MovieCast from '../components/MovieCast/MovieCast';
 import { fetchById } from '../services/fetchMovies';
 import { useParams, useNavigate, Routes } from 'react-router';
@@ -53,8 +54,8 @@ export default function MovieDetailsView() {
       </ul>
 
       <Routes>
-        <Route path="/movies/:movieId/cast" element={<MovieCast />} />
-        <Route path="/movies/:movieId/reviews" />
+        <Route path="cast" element={<MovieCast movieId={movieId} />} />
+        <Route path="reviews" element={<Reviews movieId={movieId} />} />
       </Routes>
     </>
   );
