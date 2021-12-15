@@ -17,7 +17,14 @@ export default function MovieCast({ movieId }) {
           return (
             <li key={el.id}>
               <div className={s.thumb}>
-                <img src={`https://www.themoviedb.org/t/p/w1280${el.profile_path}`} alt="" />
+                <img
+                  src={
+                    el.profile_path
+                      ? `https://www.themoviedb.org/t/p/w1280${el.profile_path}`
+                      : 'http://dummyimage.com/100'
+                  }
+                  alt=""
+                />
               </div>
               <p>{el.original_name}</p>
               <p>{el.character}</p>
